@@ -2,7 +2,7 @@
 
 <img src="src/docs/antidote3.png" alt="Antidote Logo">  
 
-> [!WARNING] Discclaimer
+> [!CAUTION]
 > Antidote is currently a proof of concept I put together in about a month for a school project, do **not** treat it as a secure communication platform. It’s a learning project, not a military-grade cipher. This comes with zero warranty, and ***I do not condone or endorse illegal or malicious activity.***
 
 ## Why should you care?
@@ -275,7 +275,8 @@ Example:
 ]
 ```
 
-**Note - the "name" by default is the SSN (sender secure number), however in some functions you can set the name to anything custom.**
+>[!NOTE]
+> The "name" by default is the SSN (sender secure number), however in some functions you can set the name to anything custom.
 
 ## user.config
 
@@ -289,7 +290,7 @@ bio = ''
 On first launch, if the ```username``` feild is empty, then it will generate a random one, ```user16909996``` for example. The bio isn't currently used, but I do have plans for it in the future.
 
 
-> [!CAUTION] DISCLAIMER FOR CONFIGS!
+> [!CAUTION]
 > After changing any feilds, **please save, and then restart the cli.**  
 > If something is broken, delete it **(apart from theme, which you can find below)**, and it will use default values and fix your file.
 
@@ -323,7 +324,7 @@ ACTIVE_THEME = ""
 ```
 
 >[!NOTE]
-> To add more theme templates, don't forget a comma at the end of the each theme object-
+> To add more theme templates, don't forget a comma at the end of the each theme object.
 
 Example:
 
