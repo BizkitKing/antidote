@@ -670,7 +670,7 @@ These are my future ideas:
 
 This release contained the basic (first ever) encryption logic, along with the rough outline of the CLI.
 
-### Pentest release (v0.1)
+### Pentest release (v0.0.1)
 
 This release contained more of the encryption logic (second iteration), along with a better file structure, and just more internals.
 
