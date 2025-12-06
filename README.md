@@ -21,7 +21,7 @@ No sign-ins. No phone numbers. No cloud.
 
 Antidote currently uses very minimal encryption — mostly XOR operations. The goal of this project was to explore the basics of end-to-end encryption: generating keypairs, encrypting and decrypting data, and experimenting with secure routing systems like the Tor protocol. I wasn’t trying to reinvent Signal or Whatsapp in a month, I don’t have the time, the resources, or the brain cells for that.
 
-This project was started (and is currently), a school assignemt, and is a requierenment for me to finish my current school, and move on with my studies. This **personal project** helped me develop a lot not only as a student, by taking my learning into my own hands, but also as a programmer.
+This project was started (and is currently), as a school assignemt, and is a requierenment for me to finish my current school, and move on with my studies. This **personal project** helped me develop a lot not only as a student, by taking my learning into my own hands, but also as a programmer.
 
 Antidote uses a custom, stripped-down version of the ed25519 algorithm to generate user keypairs. Why ed25519? I needed something simple, fast, and usable for generating user identifiers. ed25519 allows deriving a public key from a private key, which makes it ideal for integrating into a future desktop application. Private keys can be stored locally, and public keys can be derived quickly when needed.
 These keypairs are intended to be single-use.
@@ -78,7 +78,7 @@ antidote/
 3. Install Python if you haven’t already:
     https://www.python.org/downloads/
 
-4. Run app.py.
+4. Run app.py. (`python app.py` in the release folder)
 
 That's it.
 
@@ -130,6 +130,250 @@ These are all of the commands that are currently implemented into the antidote c
 ```
 
 ***This documentation will be very, very long if I go through each and every one of them, however they don't bite, feel free to test them! The only data (and its optional) that ever gets changed/saved is inside of the folder itself, which is shown in the points below.***
+
+## Encryption and Decryption
+
+> [!CAUTION]
+> Again, this isn't anything military or goverment grade, so take everything with a large pinch of salt.
+
+### The "encrypt" function
+
+To encrypt a message, run the `encrypt` command.
+
+After running this command, the tool will list all of your currectly saved keypairs and you will be prompted with this:  
+
+"`Choose sender keypair index (press Enter for manual, or 'n' for new):`"
+
+You can enter the index (number) of your saved keypairs to choose that as the sender key;  
+
+```
+Saved keypairs:
+  0: 2edd7bc72dae3d204c3b900e5bb609018289e7d148d1f96bc5c46eeeac6ada65  SSN:ed592785c221
+  1: d78890e51b3cc6a14051b1a5f06086dd957a5eb2310168a307dd9edccf670ffd  SSN:4422c156a794
+  2: b379ec092e764629dd158e4599dd807842d08b09e0fdb4ae913416e96af177cd  SSN:0a6f9eb675dd
+```
+
+Or input `n`, and a new keypair will be generated for this message;
+
+```
+SUCCESS ✔ Keypair saved successfully.
+Generated new sender keypair.
+```
+
+After choosing the keypair that will be used to **send** the message, you will be prompted to input the receiver keypair;
+
+```
+Receiver public key:
+```
+
+And finally, you will be prompted to write the message content;
+
+```
+Message:
+```
+After filling in all of these feilds, the message will be generated and printed in the terminal.
+
+---
+
+### Full encryption example:
+
+First, I will generate two keypairs, **Keypair A**, and **Keypair B**:
+```
+antidote@ani$ npair
+
+
+INFO ⓘ [2025-12-06 - 01:22:14] Generating new keypair..
+SUCCESS ✔ [+] Keypair saved successfully.
+
+
+Show keypair? (y/N): y
+
+Keypair:
+    seed: b'i{\xd5\x94"\x955\x84\xffR\xaac\x02\x7f\x94\'.\xc8\x82\x8a\x98\xb1\xb8\x03"\x85*\x9e\x8dXCH'
+    public key: 8771b8dd3296eab6ed29a52cc89fe527293b78182cb3123aa4e9332b15973392
+    private key: 697bd59422953584ff52aa63027f94272ec8828a98b1b80322852a9e8d5843488771b8dd3296eab6ed29a52cc89fe527293b78182cb3123aa4e9332b15973392
+[DEBUG]     valid status: True
+
+antidote@ani$ npair
+
+
+INFO ⓘ [2025-12-06 - 01:22:14] Generating new keypair..
+SUCCESS ✔ [+] Keypair saved successfully.
+
+
+Show keypair? (y/N): y
+
+Keypair:
+    seed: b'E\xea\xa2\xcb\xc2\xe2\xad\xcd\xe4\x95\xfa\x0e\x82}\x9fZ\xdf+\xb7\x92\x97\xbb\xe2\x96\xa7\xc2\xb8\xcf75\xd9\x0c'
+    public key: 2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+    private key: 45eaa2cbc2e2adcde495fa0e827d9f5adf2bb79297bbe296a7c2b8cf3735d90c2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+[DEBUG]     valid status: True
+```
+
+Then I will run the `encrypt` command and input the first keypair (**Keypair A**) as the sender, and the second keypair (**Keypair B**) as the receiver;
+
+```
+antidote@ani$ encrypt
+Saved keypairs:
+  0: 697bd59422953584ff52aa63027f94272ec8828a98b1b80322852a9e8d584348  SSN:8771b8dd3296
+  1: 45eaa2cbc2e2adcde495fa0e827d9f5adf2bb79297bbe296a7c2b8cf3735d90c  SSN:2a50ec1bc96b
+Choose sender keypair index (press Enter for manual, or 'n' for new): 0
+Receiver public key: 2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+```
+
+Here, I used the indexing to select **Keypair A**, and copy pasted the receiver address of **Keypair B**.  
+
+Then I will input a sample message, for this demo I will use:
+
+`Hello! This is an encryption test of the Antidote cli tool.`
+
+After entering the message, this is the output I get:
+
+```
+========== BEGIN ANI MESSAGE ==========
+
+519d028ff78bcbe5694fe707f9dce10e81df6552426a3ae4dfdb8ba90c9de7843e9b8e223c0800b9b7518863daccaee3c90d254e6552600ec1d67bc14746aeb75bec7ee4523f377520125de6de1cf0bf2c91c5c0103df7ec21d2b2cda1f9a92559486f68845e9ca356680d
+
+  ==========  END MESSAGE  ==========
+
+Sender's clock timezone: 06:12:2025 01:23:50
+Message integrity: False
+Sender SSN: 8771b8dd3296
+Message signature: ef3810d62429eb27b93fb4ac556e54481d61071133e2dfbc6829a4c6906a0bb1
+Content signature: 3716d7c7a12941079ae0e936fdc7c9dc6e7a38c2c08e56791937dc58606d74b6
+                                                          
+                                                          
+                                                          
+                                                          
+        ██████████████      ██    ████████████████        
+        ██████  ██████  ████  ████████  ██  ██  ██        
+        ██████████  ██    ████    ████  ██████████        
+        ██  ██████  ██████          ██  ██████████        
+        ██  ██████  ██  ██  ██  ██  ██████████  ██        
+        ██    ████████    ██  ██  ██████  ██    ██        
+        ██████████████████  ██  ██  ██████████████        
+        ██  ██        ██  ██    ████    ██  ██████        
+          ██  ██████    ██  ██      ██    ██████          
+            ██  ██    ██  ██  ████  ██  ██    ████        
+        ████  ██  ██        ██  ██    ██  ████            
+                ██    ████████    ██    ██    ████        
+        ████      ██    ██          ██      ██            
+            ██████    ████████████            ████        
+        ██████████████  ██      ██  ████████              
+        ████  ████  ████  ████    ██    ██  ██            
+        ██  ██████  ██  ██    ████  ██████████            
+        ██  ██████  ████  ██████        ██  ██            
+        ██████████████          ██    ██  ██████          
+        ████████  ████████  ████████    ██                
+        ██████████████      ██  ██    ██      ██          
+                                                          
+                                                          
+                                                          
+                                                          
+                  
+```
+
+***For some reason the QR representation of data looks weird in markdown, but it looks like one full QR code in the terminal.***
+
+Everything after "` ==========  END MESSAGE  ==========` is for debugging purposes.
+
+First comes the `Sender's clock timezone:`, which states when the message was generated. 
+
+This is followed by the `Message Integrity`, the message integrity is a to see that the encrypted message can be decrypted with the receiver’s public key and is either valid UTF-8 or at least 80% printable ASCII.
+
+After that comes the `Sender SSN`, which is just the first 12 characters of the **senders public key**.  
+
+Then, it is followed by two signatures;
+
+1. Message signature
+2. Content signature
+
+The message signature is a SHA-256 hash generated from random slices of the sender’s and receiver’s public keys.  
+The content signature is a SHA-256 hash of the actual message content itself.
+
+This is all folled by a QR code, which works as a visual representation of the ***content signature***.
+
+---
+
+### The "decrypt" function
+
+To decrypt a message, run the `decrypt` or `dcrypt` command.
+
+After running this command, the tool will ask for the encrypted message;
+
+"`Paste encrypted message: `"
+
+After inputing the message, you will be prompted with the choice on whether to decrypt the message using the receiver (at this point your) **private** or **public key**:
+
+```
+Decrypt with (priv/pub)?: 
+```
+
+If you choose to decrypt it using the public key (by inputting `"pub"`), it will ask for you to enter the receiveer public key;
+
+```
+Paste receiver public key (hex):
+```
+
+Then, it will verify the message using HMAC and reconstruct the original content using XOR.
+
+If you choose to decrypt it using the private key (by inputting `"priv"`), it will ask for you to enter the receiver private key:
+
+```
+Paste receiver private key (64-byte hex):
+```
+
+Then, it will derive the corresponding public key and then decrypt the message. (like choosing "pub").
+
+"Why is this needed?" you ask?
+
+I thought that this can be useful in a full GUI implementation, since the application can just store the pirvate keys (securly) and reconstruct and decrypt on the go.
+
+
+---
+
+### Full decryption example:
+
+For this example, I will use the same message that was generated by the encryption demo;
+
+```
+519d028ff78bcbe5694fe707f9dce10e81df6552426a3ae4dfdb8ba90c9de7843e9b8e223c0800b9b7518863daccaee3c90d254e6552600ec1d67bc14746aeb75bec7ee4523f377520125de6de1cf0bf2c91c5c0103df7ec21d2b2cda1f9a92559486f68845e9ca356680d
+```
+
+Now, there are two ways I can go, either decrypt it with the **public key** or **private key** (of the receiver, aka **Keypair B**)
+
+1. Decrypt with pub:
+
+```
+antidote@ani$ dcrypt
+Paste encrypted message: 519d028ff78bcbe5694fe707f9dce10e81df6552426a3ae4dfdb8ba90c9de7843e9b8e223c0800b9b7518863daccaee3c90d254e6552600ec1d67bc14746aeb75bec7ee4523f377520125de6de1cf0bf2c91c5c0103df7ec21d2b2cda1f9a92559486f68845e9ca356680d
+Decrypt with (priv/pub)?: pub
+Paste receiver public key (hex): 2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+
+Decrypted:
+ Hello! This is an encryption test of the Antidote cli tool.
+```
+
+2. Decrypt with priv:
+
+```
+antidote@ani$ dcrypt
+Paste encrypted message: 519d028ff78bcbe5694fe707f9dce10e81df6552426a3ae4dfdb8ba90c9de7843e9b8e223c0800b9b7518863daccaee3c90d254e6552600ec1d67bc14746aeb75bec7ee4523f377520125de6de1cf0bf2c91c5c0103df7ec21d2b2cda1f9a92559486f68845e9ca356680d
+Decrypt with (priv/pub)?: priv
+Paste receiver private key (64-byte hex): 45eaa2cbc2e2adcde495fa0e827d9f5adf2bb79297bbe296a7c2b8cf3735d90c2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+
+Decrypted:
+ Hello! This is an encryption test of the Antidote cli tool.
+```
+As we can see, the input string; "Hello! This is an encryption test of the Antidote cli tool." matches.
+
+
+
+>[!CAUTION]
+> Please, **make sure that all of the feilds are correct, and as is**, I did not have enough time to account for every single human error out there. ***If encryption / decryption fails please double check your inputs.***
+> Also, if something goes wrong internally, the program will spit out an error ans may close, please restart the client if that happens.
+
+---
 
 ## Configuration
 
