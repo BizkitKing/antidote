@@ -85,49 +85,49 @@ That's it.
 ## Commands
 
 These are all of the commands that are currently implemented into the antidote client:
+
 ```
-"help": "returns all commands", # done
+"help": "returns all commands",
+"econf": "edit client configuration",
+"euconf": "edit user configuration",
+"etheme": "edit theme",
 
-"econf": "edit client configuration", # needs testing
-"euconf": "edit user configuration", # needs testing
-"etheme": "edit theme", # needs testing
+"npair": "generates a new keypair",
+"encrypt": "encrypt a message",
+"dcrypt": "decrypt a message",
 
-"npair": "generates a new keypair", # done
-"encrypt": "encrypt a message", # needs testing
-"dcrypt": "decrypt a message",  # needs testing
+"tmsg": "makes a test message",
 
-"tmsg": "makes a test message", # done
+"kpshow": "shows saved keypairs",
+"kpimport": "import a keypair or public key",
+"kpexport": "export a keypair or public key",
+"kpdel": "delete a saved keypair",
 
-"kpshow": "shows saved keypairs", # done
-"kpimport": "import a keypair or public key", # fix
-"kpexport": "export a keypair or public key", # done
-"kpdel": "delete a saved keypair", # done
+"msgshow": "shows saved messages",
+"msgdel": "delete a saved message",
 
-"msgshow": "shows saved messages", # done
-"msgdel": "delete a saved message", # done
+"ctshow": "shows saved contacts",
+"ctadd": "add a new contact",
+"ctremove": "remove a saved contact",
+"ctupdate": "update a saved contact",
 
-"ctshow": "shows saved contacts", # done
-"ctadd": "add a new contact", # done
-"ctremove": "remove a saved contact", # done
-"ctupdate": "update a saved contact", # done
+"backup": "export all data to a backup file",
+"restore": "restore data from a backup file",
+"clear": "wipe all stored data (requires confirmation)",
 
-"backup": "export all data to a backup file", # done
-"restore": "restore data from a backup file", # needs testing
-"clear": "wipe all stored data (requires confirmation)", # done
+"version": "show tool version information",
+"config": "show combined configuration summary",
+"theme": "show theme summery",
+"path": "show storage/config directories",
+"ping": "send an encrypted ping to a contact",
 
-"version": "show tool version information", # done
-"config": "show combined configuration summary", # done
-"theme": "show theme summery", # done
-"path": "show storage/config directories", # done
-"ping": "send an encrypted ping to a contact", # needs testing
+"debug": "shows general debug stats",
+"hexdump": "display raw bytes of a given file/key/message",
+"benchmark": "test encryption/decryption performance",
 
-"debug": "shows general debug stats", # done
-"hexdump": "display raw bytes of a given file/key/message", # needs testing
-"benchmark": "test encryption/decryption performance", # needs testing
-
-"pp": "clear the terminal", # done
-"exit": "exit the program", # done
-"quit": "exit the program" # done
+"pp": "clear the terminal",
+"exit": "exit the program",
+"quit": "exit the program"
 ```
 
 ***This documentation will be very, very long if I go through each and every one of them, however they don't bite, feel free to test them! The only data (and it's optional) that ever gets changed/saved is inside of the folder itself, which is shown in the points below.***
