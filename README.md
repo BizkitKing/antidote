@@ -275,11 +275,11 @@ Content signature: 3716d7c7a12941079ae0e936fdc7c9dc6e7a38c2c08e56791937dc58606d7
 
 ***For some reason the QR representation of data looks weird in markdown, but it looks like one full QR code in the terminal.***
 
-Everything after "` ==========  END MESSAGE  ==========` is for debugging purposes.
+Everything after "`==========  END MESSAGE  ==========`" is for debugging purposes.
 
 First comes the `Sender's clock timezone:`, which states when the message was generated. 
 
-This is followed by the `Message Integrity`, the message integrity is a to see that the encrypted message can be decrypted with the receiver’s public key and is either valid UTF-8 or at least 80% printable ASCII.
+This is followed by the `Message Integrity`, the message integrity is a check to see that the encrypted message can be decrypted with the receiver’s public key and is either valid UTF-8 or at least 80% printable ASCII.
 
 After that comes the `Sender SSN`, which is just the first 12 characters of the **sender’s public key**.  
 
