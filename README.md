@@ -666,18 +666,18 @@ These are my future ideas:
   
 ## Patchnotes
 
-### First release (v0.0)
+### First upload
 
-This release contained the basic (first ever) encryption logic, along with the rough outline of the cli
+This release contained the basic (first ever) encryption logic, along with the rough outline of the CLI.
 
 ### Pentest release (v0.1)
 
-This release contained more of the encryption logic (second iteration), along with a better file structure and 
+This release contained more of the encryption logic (second iteration), along with a better file structure, and just more internals.
 
-### Catchup release (v0.1.1)
+### Catchup dump
 
-This release "dumped" the current stage of the project,
+This release "dumped" the current stage of the project.
 
 ### Full release (v1) (Personal Project release)
 
-This release is the final "product" that I will hand in.  ***(I will continue working on this!!!)***
+This release is the final "product" that I will hand in. ***(I will continue working on this!!!)***
