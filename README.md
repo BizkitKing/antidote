@@ -143,7 +143,7 @@ To encrypt a message, run the `encrypt` command.
 
 After running this command, the tool will list all of your currently saved keypairs and you will be prompted with this:  
 
-"`Choose sender keypair index (press Enter for manual, or 'n' for new):`"
+"`Choose sender keypair index (Enter = manual, 'n' = new):`"
 
 You can enter the index (number) of your saved keypairs to choose that as the sender key;  
 
@@ -157,8 +157,8 @@ Saved keypairs:
 Or input `n`, and a new keypair will be generated for this message;
 
 ```
-SUCCESS ✔ Keypair saved successfully.
-Generated new sender keypair.
+INFO ⓘ [2025-12-06 - 17:54:00] Generating new keypair..
+SUCCESS ✔ [+] Keypair saved successfully.
 ```
 
 After choosing the keypair that will be used to **send** the message, you will be prompted to input the receiver keypair;
@@ -183,31 +183,31 @@ First, I will generate two keypairs, **Keypair A**, and **Keypair B**:
 antidote@ani$ npair
 
 
-INFO ⓘ [2025-12-06 - 01:22:14] Generating new keypair..
+INFO ⓘ [2025-12-06 - 17:55:32] Generating new keypair..
 SUCCESS ✔ [+] Keypair saved successfully.
 
 
 Show keypair? (y/N): y
 
 Keypair:
-    seed: b'i{\xd5\x94"\x955\x84\xffR\xaac\x02\x7f\x94\'.\xc8\x82\x8a\x98\xb1\xb8\x03"\x85*\x9e\x8dXCH'
-    public key: 8771b8dd3296eab6ed29a52cc89fe527293b78182cb3123aa4e9332b15973392
-    private key: 697bd59422953584ff52aa63027f94272ec8828a98b1b80322852a9e8d5843488771b8dd3296eab6ed29a52cc89fe527293b78182cb3123aa4e9332b15973392
+    seed: b'C\xa0}\x91"\x17<J\xee\xc5\xa7\xb2O\xa2w\xb1\xec\xad\xd4\xe3?\xa0\x1b\xe6\xfb\xa1\x1e\xd0i+\xa1\xc4'
+    public key: 1296361d62f32e876dd71ab685bc3f20e4bca11f2f926faeb7811dd1d080c228
+    private key: 43a07d9122173c4aeec5a7b24fa277b1ecadd4e33fa01be6fba11ed0692ba1c41296361d62f32e876dd71ab685bc3f20e4bca11f2f926faeb7811dd1d080c228
 [DEBUG]     valid status: True
 
 antidote@ani$ npair
 
 
-INFO ⓘ [2025-12-06 - 01:22:14] Generating new keypair..
+INFO ⓘ [2025-12-06 - 17:55:32] Generating new keypair..
 SUCCESS ✔ [+] Keypair saved successfully.
 
 
 Show keypair? (y/N): y
 
 Keypair:
-    seed: b'E\xea\xa2\xcb\xc2\xe2\xad\xcd\xe4\x95\xfa\x0e\x82}\x9fZ\xdf+\xb7\x92\x97\xbb\xe2\x96\xa7\xc2\xb8\xcf75\xd9\x0c'
-    public key: 2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
-    private key: 45eaa2cbc2e2adcde495fa0e827d9f5adf2bb79297bbe296a7c2b8cf3735d90c2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+    seed: b"6\xa7'}\x85\x18\x82]\xf9*f\xfcz*k\x05\xc4\xb15\n\x0cp0\xbf\xc4\xe3\xf0m\x9c\xae\r\x16"
+    public key: c0f6ca03e830dbab98b38d31f63a5a2de3f3492a07a7454a1dcf008a26aeae52
+    private key: 36a7277d8518825df92a66fc7a2a6b05c4b1350a0c7030bfc4e3f06d9cae0d16c0f6ca03e830dbab98b38d31f63a5a2de3f3492a07a7454a1dcf008a26aeae52
 [DEBUG]     valid status: True
 ```
 
@@ -215,59 +215,61 @@ Then I will run the `encrypt` command and input the first keypair (**Keypair A**
 
 ```
 antidote@ani$ encrypt
+
+
 Saved keypairs:
-  0: 697bd59422953584ff52aa63027f94272ec8828a98b1b80322852a9e8d584348  SSN:8771b8dd3296
-  1: 45eaa2cbc2e2adcde495fa0e827d9f5adf2bb79297bbe296a7c2b8cf3735d90c  SSN:2a50ec1bc96b
-Choose sender keypair index (press Enter for manual, or 'n' for new): 0
-Receiver public key: 2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+  0: 43a07d9122173c4aeec5a7b24fa277b1ecadd4e33fa01be6fba11ed0692ba1c4  SSN:1296361d62f3
+  1: 36a7277d8518825df92a66fc7a2a6b05c4b1350a0c7030bfc4e3f06d9cae0d16  SSN:c0f6ca03e830
+
+Choose sender keypair index (Enter = manual, 'n' = new): 0
+Receiver public key: c0f6ca03e830dbab98b38d31f63a5a2de3f3492a07a7454a1dcf008a26aeae52
 ```
 
 Here, I used the indexing to select **Keypair A**, and copied and pasted the receiver address of **Keypair B**.  
 
 Then I will input a sample message, for this demo I will use:
 
-`Hello! This is an encryption test of the Antidote cli tool.`
+`Hello! This is an encryption test of the Antidote CLI tool.`
 
 After entering the message, this is the output I get:
 
 ```
 ========== BEGIN ANI MESSAGE ==========
 
-519d028ff78bcbe5694fe707f9dce10e81df6552426a3ae4dfdb8ba90c9de7843e9b8e223c0800b9b7518863daccaee3c90d254e6552600ec1d67bc14746aeb75bec7ee4523f377520125de6de1cf0bf2c91c5c0103df7ec21d2b2cda1f9a92559486f68845e9ca356680d
+47a8abc6383f103bd8c302304f34a10296b04d67340ea89580be7bac92eff4fb89372f88d61432062c21efb2943225319bf352893db28ec54d4f92e12c3f66f4355495365155c76c4919f23789eb8b067d007294694a288ea83daee7a2219bbc52f5b76315b8eb5f6a596f
 
   ==========  END MESSAGE  ==========
 
-Sender's clock timezone: 06:12:2025 01:23:50
+Sender's clock timezone: 06:12:2025 17:56:34
 Message integrity: False
-Sender SSN: 8771b8dd3296
-Message signature: ef3810d62429eb27b93fb4ac556e54481d61071133e2dfbc6829a4c6906a0bb1
-Content signature: 3716d7c7a12941079ae0e936fdc7c9dc6e7a38c2c08e56791937dc58606d74b6
+Sender SSN: 1296361d62f3
+Message signature: 1467204a23f5efc2c5099ef905e7e937b26413d19db6a4b9060319ea64bd8b41
+Content signature: 882288b813fec75d7b2f3872b565a533c52b0fc9db376eacb095da5345fd6cfd
                                                           
                                                           
                                                           
                                                           
-        ██████████████      ██    ████████████████        
-        ██████  ██████  ████  ████████  ██  ██  ██        
-        ██████████  ██    ████    ████  ██████████        
-        ██  ██████  ██████          ██  ██████████        
-        ██  ██████  ██  ██  ██  ██  ██████████  ██        
-        ██    ████████    ██  ██  ██████  ██    ██        
-        ██████████████████  ██  ██  ██████████████        
-        ██  ██        ██  ██    ████    ██  ██████        
-          ██  ██████    ██  ██      ██    ██████          
-            ██  ██    ██  ██  ████  ██  ██    ████        
-        ████  ██  ██        ██  ██    ██  ████            
-                ██    ████████    ██    ██    ████        
-        ████      ██    ██          ██      ██            
-            ██████    ████████████            ████        
-        ██████████████  ██      ██  ████████              
-        ████  ████  ████  ████    ██    ██  ██            
-        ██  ██████  ██  ██    ████  ██████████            
-        ██  ██████  ████  ██████        ██  ██            
-        ██████████████          ██    ██  ██████          
-        ████████  ████████  ████████    ██                
-        ██████████████      ██  ██    ██      ██          
-                                                          
+        ██████████████  ██  ██  ██████████████████        
+        ██  ██████  ████  ██  ██    ██  ██      ██        
+        ██  ██████████  ██████      ██████████████        
+        ██████████  ████      ████████  ██████████        
+        ██████████  ██  ██          ██  ██████  ██        
+        ██      ██████  ████  ██████████████    ██        
+        ██████████████  ██  ██      ██████████████        
+        ██      ██    ██  ██████  ████  ██  ██            
+          ██  ██  ██    ██  ██  ██    ██  ██    ██        
+            ██            ██  ██  ██    ██    ████        
+        ████    ████        ██      ████  ██              
+            ██        ██████  ██  ██    ██████            
+        ████    ████    ██          ██          ██        
+          ████████      ██████████████  ██    ████        
+        ██████████████  ██      ██  ████  ██              
+        ██      ██  ████  ██  ██████      ████            
+        ██████████  ██          ██  ██                    
+        ██  ██████  ████████  ██    ██████                
+        ██████████████  ██  ██      ████  ██████          
+        ██████    ██████    ██  ██████                    
+        ██████████████  ████      ██  ██  ██  ██          
                                                           
                                                           
                                                           
@@ -338,7 +340,7 @@ I thought that this can be useful in a full GUI implementation, since the applic
 For this example, I will use the same message that was generated by the encryption demo;
 
 ```
-519d028ff78bcbe5694fe707f9dce10e81df6552426a3ae4dfdb8ba90c9de7843e9b8e223c0800b9b7518863daccaee3c90d254e6552600ec1d67bc14746aeb75bec7ee4523f377520125de6de1cf0bf2c91c5c0103df7ec21d2b2cda1f9a92559486f68845e9ca356680d
+47a8abc6383f103bd8c302304f34a10296b04d67340ea89580be7bac92eff4fb89372f88d61432062c21efb2943225319bf352893db28ec54d4f92e12c3f66f4355495365155c76c4919f23789eb8b067d007294694a288ea83daee7a2219bbc52f5b76315b8eb5f6a596f
 ```
 
 Now, there are two ways I can go, either decrypt it with the **public key** or **private key** (of the receiver, aka **Keypair B**)
@@ -346,27 +348,29 @@ Now, there are two ways I can go, either decrypt it with the **public key** or *
 1. Decrypt with pub:
 
 ```
-antidote@ani$ dcrypt
-Paste encrypted message: 519d028ff78bcbe5694fe707f9dce10e81df6552426a3ae4dfdb8ba90c9de7843e9b8e223c0800b9b7518863daccaee3c90d254e6552600ec1d67bc14746aeb75bec7ee4523f377520125de6de1cf0bf2c91c5c0103df7ec21d2b2cda1f9a92559486f68845e9ca356680d
+antidote@ani$ decrypt
+Paste encrypted message: 47a8abc6383f103bd8c302304f34a10296b04d67340ea89580be7bac92eff4fb89372f88d61432062c21efb2943225319bf352893db28ec54d4f92e12c3f66f4355495365155c76c4919f23789eb8b067d007294694a288ea83daee7a2219bbc52f5b76315b8eb5f6a596f
 Decrypt with (priv/pub)?: pub
-Paste receiver public key (hex): 2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+Paste receiver public key (hex): c0f6ca03e830dbab98b38d31f63a5a2de3f3492a07a7454a1dcf008a26aeae52
 
-Decrypted:
- Hello! This is an encryption test of the Antidote cli tool.
+
+SUCCESS ✔ Decrypted:
+Hello! This is an encryption test of the Antidote CLI tool.
 ```
 
 2. Decrypt with priv:
 
 ```
-antidote@ani$ dcrypt
-Paste encrypted message: 519d028ff78bcbe5694fe707f9dce10e81df6552426a3ae4dfdb8ba90c9de7843e9b8e223c0800b9b7518863daccaee3c90d254e6552600ec1d67bc14746aeb75bec7ee4523f377520125de6de1cf0bf2c91c5c0103df7ec21d2b2cda1f9a92559486f68845e9ca356680d
+antidote@ani$ decrypt
+Paste encrypted message: 47a8abc6383f103bd8c302304f34a10296b04d67340ea89580be7bac92eff4fb89372f88d61432062c21efb2943225319bf352893db28ec54d4f92e12c3f66f4355495365155c76c4919f23789eb8b067d007294694a288ea83daee7a2219bbc52f5b76315b8eb5f6a596f
 Decrypt with (priv/pub)?: priv
-Paste receiver private key (64-byte hex): 45eaa2cbc2e2adcde495fa0e827d9f5adf2bb79297bbe296a7c2b8cf3735d90c2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
+Paste receiver private key (64-byte hex): 36a7277d8518825df92a66fc7a2a6b05c4b1350a0c7030bfc4e3f06d9cae0d16c0f6ca03e830dbab98b38d31f63a5a2de3f3492a07a7454a1dcf008a26aeae52
 
-Decrypted:
- Hello! This is an encryption test of the Antidote cli tool.
+
+SUCCESS ✔ Decrypted:
+Hello! This is an encryption test of the Antidote CLI tool.
 ```
-As we can see, the input string; "Hello! This is an encryption test of the Antidote cli tool." matches.
+As we can see, the input string; "Hello! This is an encryption test of the Antidote CLI tool." matches.
 
 
 
@@ -642,6 +646,12 @@ These are all of the available colours (ANSI colour scheme):
     BG_CYAN    = "\033[46m"
     BG_WHITE   = "\033[47m"
 ```
+
+You can edit all three of these files by using;
+
+1. `euconf` to edit the **user configuration**
+2. `econf` to edit the **client configuration**
+3. `etheme` to edit the **theme configuration**
 
 ## Plans for the future
 
