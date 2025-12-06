@@ -21,12 +21,12 @@ No sign-ins. No phone numbers. No cloud.
 
 Antidote currently uses very minimal encryption — mostly XOR operations. The goal of this project was to explore the basics of end-to-end encryption: generating keypairs, encrypting and decrypting data, and experimenting with secure routing systems like the Tor protocol. I wasn’t trying to reinvent Signal or Whatsapp in a month, I don’t have the time, the resources, or the brain cells for that.
 
-This project was started (and is currently), as a school assignemt, and is a requierenment for me to finish my current school, and move on with my studies. This **personal project** helped me develop a lot not only as a student, by taking my learning into my own hands, but also as a programmer.
+This project was started (and is currently), as a school assignment, and is a requirement for me to finish my current school, and move on with my studies. This **personal project** helped me develop a lot not only as a student, by taking my learning into my own hands, but also as a programmer.
 
 Antidote uses a custom, stripped-down version of the ed25519 algorithm to generate user keypairs. Why ed25519? I needed something simple, fast, and usable for generating user identifiers. ed25519 allows deriving a public key from a private key, which makes it ideal for integrating into a future desktop application. Private keys can be stored locally, and public keys can be derived quickly when needed.
 These keypairs are intended to be single-use.
 
-It isnt the most efficient, or the best code ever written, but it works, and I am satisfied with how this project is going so far. Feel free to skim through the code (the release folder). I have split the core of this tool into separate files, as I was focusing on maintainability, scalablity, repairability and modularity. In simple terms; I wanted every part of this to work on its own, whithout relying on something else, and being very modular, so for example I could easily swap in a better encryption system, without having to re write the entire tool.
+It isn't the most efficient, or the best code ever written, but it works, and I am satisfied with how this project is going so far. Feel free to skim through the code (the release folder). I have split the core of this tool into separate files, as I was focusing on maintainability, scalability, repairability and modularity. In simple terms; I wanted every part of this to work on its own, without relying on something else, and being very modular, so for example I could easily swap in a better encryption system, without having to rewrite the entire tool.
 
 Antidote currently has zero external requirements — just a device that can run Python.
 
@@ -129,18 +129,18 @@ These are all of the commands that are currently implemented into the antidote c
         "quit": "exit the program"
 ```
 
-***This documentation will be very, very long if I go through each and every one of them, however they don't bite, feel free to test them! The only data (and its optional) that ever gets changed/saved is inside of the folder itself, which is shown in the points below.***
+***This documentation will be very, very long if I go through each and every one of them, however they don't bite, feel free to test them! The only data (and it's optional) that ever gets changed/saved is inside of the folder itself, which is shown in the points below.***
 
 ## Encryption and Decryption
 
 > [!CAUTION]
-> Again, this isn't anything military or goverment grade, so take everything with a large pinch of salt.
+> Again, this isn't anything military or government grade, so take everything with a large pinch of salt.
 
 ### The "encrypt" function
 
 To encrypt a message, run the `encrypt` command.
 
-After running this command, the tool will list all of your currectly saved keypairs and you will be prompted with this:  
+After running this command, the tool will list all of your currently saved keypairs and you will be prompted with this:  
 
 "`Choose sender keypair index (press Enter for manual, or 'n' for new):`"
 
@@ -171,7 +171,7 @@ And finally, you will be prompted to write the message content;
 ```
 Message:
 ```
-After filling in all of these feilds, the message will be generated and printed in the terminal.
+After filling in all of these fields, the message will be generated and printed in the terminal.
 
 ---
 
@@ -221,7 +221,7 @@ Choose sender keypair index (press Enter for manual, or 'n' for new): 0
 Receiver public key: 2a50ec1bc96b522d8d9b9c97ae4478b0812dbb4b291c9eb6f0e8c71e1e51432f
 ```
 
-Here, I used the indexing to select **Keypair A**, and copy pasted the receiver address of **Keypair B**.  
+Here, I used the indexing to select **Keypair A**, and copied and pasted the receiver address of **Keypair B**.  
 
 Then I will input a sample message, for this demo I will use:
 
@@ -281,7 +281,7 @@ First comes the `Sender's clock timezone:`, which states when the message was ge
 
 This is followed by the `Message Integrity`, the message integrity is a to see that the encrypted message can be decrypted with the receiver’s public key and is either valid UTF-8 or at least 80% printable ASCII.
 
-After that comes the `Sender SSN`, which is just the first 12 characters of the **senders public key**.  
+After that comes the `Sender SSN`, which is just the first 12 characters of the **sender’s public key**.  
 
 Then, it is followed by two signatures;
 
@@ -291,7 +291,7 @@ Then, it is followed by two signatures;
 The message signature is a SHA-256 hash generated from random slices of the sender’s and receiver’s public keys.  
 The content signature is a SHA-256 hash of the actual message content itself.
 
-This is all folled by a QR code, which works as a visual representation of the ***content signature***.
+This is all followed by a QR code, which works as a visual representation of the ***content signature***.
 
 ---
 
@@ -303,13 +303,13 @@ After running this command, the tool will ask for the encrypted message;
 
 "`Paste encrypted message: `"
 
-After inputing the message, you will be prompted with the choice on whether to decrypt the message using the receiver (at this point your) **private** or **public key**:
+After inputting the message, you will be prompted with the choice on whether to decrypt the message using the receiver (at this point your) **private** or **public key**:
 
 ```
 Decrypt with (priv/pub)?: 
 ```
 
-If you choose to decrypt it using the public key (by inputting `"pub"`), it will ask for you to enter the receiveer public key;
+If you choose to decrypt it using the public key (by inputting `"pub"`), it will ask for you to enter the receiver public key;
 
 ```
 Paste receiver public key (hex):
@@ -327,7 +327,7 @@ Then, it will derive the corresponding public key and then decrypt the message. 
 
 "Why is this needed?" you ask?
 
-I thought that this can be useful in a full GUI implementation, since the application can just store the pirvate keys (securly) and reconstruct and decrypt on the go.
+I thought that this can be useful in a full GUI implementation, since the application can just store the private keys (securely) and reconstruct and decrypt on the go.
 
 
 ---
@@ -370,14 +370,14 @@ As we can see, the input string; "Hello! This is an encryption test of the Antid
 
 
 >[!CAUTION]
-> Please, **make sure that all of the feilds are correct, and as is**, I did not have enough time to account for every single human error out there. ***If encryption / decryption fails please double check your inputs.***
-> Also, if something goes wrong internally, the program will spit out an error ans may close, please restart the client if that happens.
+> Please, **make sure that all of the fields are correct, and as is**, I did not have enough time to account for every single human error out there. ***If encryption / decryption fails please double check your inputs.***
+> Also, if something goes wrong internally, the program will spit out an error and may close, please restart the client if that happens.
 
 ---
 
 ## Configuration
 
-To configure the cli, there are two files;  
+To configure the CLI, there are two files;  
 
 1. ```conf.config```
 
@@ -397,7 +397,7 @@ number_of_saved_contacts = 10
 ```
 
 **storing_messages** is to toggle storing messages in the ```messages.json``` file.  
-If this value set to ```False```, the **number_of_saved_messages** number dosen't get read. Otherwise, this value is the amount of messages will get saved to the file. If you save more then ```n``` messages, **then oldest message will get deleted and the new message will get appeneded**.
+If this value set to ```False```, the **number_of_saved_messages** number doesn't get read. Otherwise, this value is the amount of messages will get saved to the file. If you save more then ```n``` messages, **then oldest message will get deleted and the new message will get appended**.
 
 These are the messages that **you**, the client operator send.
 
@@ -442,7 +442,7 @@ Example:
 ```
 
 **storing_keypairs** is to toggle storing keypairs in the ```keypairs.json``` file.  
-If this value set to ```False```, the **number_of_saved_keypairs** number dosen't get read. Otherwise, this value is the amount of keypairs will get saved to the file. If you save more then ```n``` keypairs, **then oldest keypair will get deleted and the new keypair will get appeneded**.
+If this value set to ```False```, the **number_of_saved_keypairs** number doesn't get read. Otherwise, this value is the amount of keypairs will get saved to the file. If you save more then ```n``` keypairs, **then oldest keypair will get deleted and the new keypair will get appended**.
 
 This is the structure of ```keypairs.json```:
 
@@ -485,7 +485,7 @@ Example:
 ```
 
 **storing_contacts** is to toggle contacts messages in the ```contacts.json``` file.  
-If this value set to ```False```, the **number_of_saved_contacts** number dosen't get read. Otherwise, this value is the amount of contacts will get saved to the file. If you save more then ```n``` contacts, **then oldest contact will get deleted and the new contact will get appeneded**.
+If this value set to ```False```, the **number_of_saved_contacts** number doesn't get read. Otherwise, this value is the amount of contacts will get saved to the file. If you save more then ```n``` contacts, **then oldest contact will get deleted and the new contact will get appended**.
 
 This is the structure of ```contacts.json```:
 
@@ -531,16 +531,16 @@ username = ''
 bio = ''
 ```
 
-On first launch, if the ```username``` feild is empty, then it will generate a random one, ```user16909996``` for example. The bio isn't currently used, but I do have plans for it in the future.
+On first launch, if the ```username``` field is empty, then it will generate a random one, ```user16909996``` for example. The bio isn't currently used, but I do have plans for it in the future.
 
 
 > [!CAUTION]
-> After changing any feilds, **please save, and then restart the cli.**  
+> After changing any fields, **please save, and then restart the cli.**  
 > If something is broken, delete it **(apart from theme, which you can find below)**, and it will use default values and fix your file.
 
 ## Customisation
 
-You can customise the appearence of the cli by changing the **theme**.  
+You can customise the appearance of the cli by changing the **theme**.  
 
 <img src="src/docs/theme_demo.png" alt="Antidote Logo">
 
@@ -605,7 +605,7 @@ THEMES = {
 ]
 ```
 
-These are all of the available colours (ANSII colour scheme):
+These are all of the available colours (ANSI colour scheme):
 
 ```
     RESET   = "\033[0m"
@@ -646,7 +646,7 @@ These are all of the available colours (ANSII colour scheme):
 
 Right now, Antidote has a basic CLI and simple encryption logic with some messaging-app features.  
 
-These are my future idas:
+These are my future ideas:
 
 1. Implementing Tor-based networking
 2. Designing a handshake system that lets users swap keypairs for every message while staying in the same “tunnel”  
@@ -657,11 +657,11 @@ These are my future idas:
 
 ### First release (v0.0)
 
-This release contained the basic (first ever) encryption logic, along with the rought outline of the cli
+This release contained the basic (first ever) encryption logic, along with the rough outline of the cli
 
-### Pentest releace (v0.1)
+### Pentest release (v0.1)
 
-This release contained more of the encryption logic (second itteration), along with a better file structure and 
+This release contained more of the encryption logic (second iteration), along with a better file structure and 
 
 ### Catchup release (v0.1.1)
 
