@@ -2,6 +2,12 @@
 
 <img src="src/docs/antidote3.png" alt="Antidote Logo">  
 
+![Python](https://img.shields.io/badge/code-Python-blue)
+![License](https://img.shields.io/github/license/chromeheartless/antidote)
+![Last commit](https://img.shields.io/github/last-commit/chromeheartless/antidote)
+![Issues](https://img.shields.io/github/issues/chromeheartless/antidote)
+![Forks](https://img.shields.io/github/forks/chromeheartless/antidote)
+
 > [!CAUTION]
 > Antidote is currently a proof of concept I put together in about a month for a school project, do **not** treat it as a secure communication platform. It’s a learning project, not a military-grade cipher. This comes with zero warranty, and ***I do not condone or endorse illegal or malicious activity.***
 
@@ -85,49 +91,49 @@ That's it.
 ## Commands
 
 These are all of the commands that are currently implemented into the antidote client:
-
 ```
-"help": "returns all commands",
-"econf": "edit client configuration",
-"euconf": "edit user configuration",
-"etheme": "edit theme",
+"help": "returns all commands", # done
 
-"npair": "generates a new keypair",
-"encrypt": "encrypt a message",
-"dcrypt": "decrypt a message",
+"econf": "edit client configuration", # needs testing
+"euconf": "edit user configuration", # needs testing
+"etheme": "edit theme", # needs testing
 
-"tmsg": "makes a test message",
+"npair": "generates a new keypair", # done
+"encrypt": "encrypt a message", # needs testing
+"dcrypt": "decrypt a message",  # needs testing
 
-"kpshow": "shows saved keypairs",
-"kpimport": "import a keypair or public key",
-"kpexport": "export a keypair or public key",
-"kpdel": "delete a saved keypair",
+"tmsg": "makes a test message", # done
 
-"msgshow": "shows saved messages",
-"msgdel": "delete a saved message",
+"kpshow": "shows saved keypairs", # done
+"kpimport": "import a keypair or public key", # fix
+"kpexport": "export a keypair or public key", # done
+"kpdel": "delete a saved keypair", # done
 
-"ctshow": "shows saved contacts",
-"ctadd": "add a new contact",
-"ctremove": "remove a saved contact",
-"ctupdate": "update a saved contact",
+"msgshow": "shows saved messages", # done
+"msgdel": "delete a saved message", # done
 
-"backup": "export all data to a backup file",
-"restore": "restore data from a backup file",
-"clear": "wipe all stored data (requires confirmation)",
+"ctshow": "shows saved contacts", # done
+"ctadd": "add a new contact", # done
+"ctremove": "remove a saved contact", # done
+"ctupdate": "update a saved contact", # done
 
-"version": "show tool version information",
-"config": "show combined configuration summary",
-"theme": "show theme summery",
-"path": "show storage/config directories",
-"ping": "send an encrypted ping to a contact",
+"backup": "export all data to a backup file", # done
+"restore": "restore data from a backup file", # needs testing
+"clear": "wipe all stored data (requires confirmation)", # done
 
-"debug": "shows general debug stats",
-"hexdump": "display raw bytes of a given file/key/message",
-"benchmark": "test encryption/decryption performance",
+"version": "show tool version information", # done
+"config": "show combined configuration summary", # done
+"theme": "show theme summery", # done
+"path": "show storage/config directories", # done
+"ping": "send an encrypted ping to a contact", # needs testing
 
-"pp": "clear the terminal",
-"exit": "exit the program",
-"quit": "exit the program"
+"debug": "shows general debug stats", # done
+"hexdump": "display raw bytes of a given file/key/message", # needs testing
+"benchmark": "test encryption/decryption performance", # needs testing
+
+"pp": "clear the terminal", # done
+"exit": "exit the program", # done
+"quit": "exit the program" # done
 ```
 
 ***This documentation will be very, very long if I go through each and every one of them, however they don't bite, feel free to test them! The only data (and it's optional) that ever gets changed/saved is inside of the folder itself, which is shown in the points below.***
