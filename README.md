@@ -672,18 +672,18 @@ These are my future ideas:
   
 ## Patchnotes
 
-#### First upload
+#### Full release (v1) (Personal Project release)
 
-This release contained the basic (first ever) encryption logic, along with the rough outline of the CLI.
-
-#### Pentest release (v0.0.1)
-
-This release contained more of the encryption logic (second iteration), along with a better file structure, and just more internals.
+This release is the final "product" that I will hand in. ***(I will continue working on this!!!)***
 
 #### Catchup dump
 
 This release "dumped" the current stage of the project.
 
-#### Full release (v1) (Personal Project release)
+#### Pentest release (v0.0.1)
 
-This release is the final "product" that I will hand in. ***(I will continue working on this!!!)***
+This release contained more of the encryption logic (second iteration), along with a better file structure, and just more internals.
+
+#### First upload
+
+This release contained the basic (first ever) encryption logic, along with the rough outline of the CLI.
